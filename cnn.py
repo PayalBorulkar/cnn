@@ -44,10 +44,10 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                              class_mode='binary')
 
 classifier.fit_generator(training_set,
-                         steps_per_epoch=1000,
-                         epochs=5,
+                         steps_per_epoch=6000,
+                         epochs=10,
                          validation_data=test_set,
-                         validation_steps=1000)
+                         validation_steps=2000)
 
 
 classifier.save('Image_Classifying.h5')
