@@ -44,22 +44,12 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                              class_mode='binary')
 
 classifier.fit_generator(training_set,
-                         steps_per_epoch=6000,
-                         epochs=25,
+                         steps_per_epoch=1000,
+                         epochs=5,
                          validation_data=test_set,
-                         validation_steps=2000)
+                         validation_steps=1000)
 
-#Making new prediction(Evaluation tool for classifying single image)
 
-import numpy as np
-from keras.preprocessing import image
-test_image=image.load_img('dataset/single_prediction/indoor_or_outdoor1.jpg',target_size=(64,64))
-test_image=image.img_to_array(test_image)
-test_image=np.expand_dims(test_image, axis=0)
-result=classifier.predict(test_image)
-training_set.class_indices
-if result[0][0]==1:
-    prediction='outdoor'
-else:
-    prediction='indoor'
-print(prediction)
+classifier.save('Image_Classifying.h5')
+classifier.save_weights('my_model_weight.h5')
+
