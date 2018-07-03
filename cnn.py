@@ -25,20 +25,20 @@ classifier.add(Dense(output_dim= 1,activation='sigmoid'))
 classifier.compile(optimizer='adam',loss='binary_crossentropy',metrics=['accuracy'])
 #Fitting Cnn to in image(for data preparation)
 from keras.preprocessing.image import ImageDataGenerator
-train_datagen = ImageDataGenerator(
+train_data = ImageDataGenerator(
         rescale=1./255,
         shear_range=0.2,
         zoom_range=0.2,
         horizontal_flip=True)
 
-test_datagen = ImageDataGenerator(rescale=1./255)
+test_data = ImageDataGenerator(rescale=1./255)
 
-training_set = train_datagen.flow_from_directory('dataset/training_set',
+training_set = train_data.flow_from_directory('dataset/training_set',
                                                   target_size=(64, 64),
                                                   batch_size=32,
                                                   class_mode='binary')
 
-test_set = test_datagen.flow_from_directory('dataset/test_set',
+test_set = test_data.flow_from_directory('dataset/test_set',
                                              target_size=(64, 64),
                                              batch_size=32,
                                              class_mode='binary')
