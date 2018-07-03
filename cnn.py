@@ -33,6 +33,8 @@ train_data = ImageDataGenerator(
 
 test_data = ImageDataGenerator(rescale=1./255)
 
+# Creating training and test set and performing fitting
+
 training_set = train_data.flow_from_directory('dataset/training_set',
                                                   target_size=(64, 64),
                                                   batch_size=32,
@@ -49,7 +51,7 @@ classifier.fit_generator(training_set,
                          validation_data=test_set,
                          validation_steps=2000)
 
-
+# Creating Trained Model
 classifier.save('Image_Classifying.h5')
 classifier.save_weights('my_model_weight.h5')
 
